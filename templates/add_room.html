@@ -1,0 +1,9 @@
+{% extends "admin_base.html" %}
+{% block content %}
+<h2>Add New Room</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" style="background:#007bff; color:white; padding:8px 14px; border:none; border-radius:6px;">Save Room</button>
+</form>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div style="max-width: 800px; margin: 40px auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); padding: 30px;">
+    <h2 style="color: #2c3e50; text-align: center; margin-bottom: 20px;">
+        Welcome to Te Whare Rūnanga Conference Room Reservation System
+    </h2>
+
+    {% if user.is_authenticated %}
+        <div style="text-align: center; margin-bottom: 25px;">
+            <p style="font-size: 18px; color: #34495e;">Hello, <strong>{{ user.username }}</strong></p>
+            <p style="color: #555;">Use the navigation menu to view available rooms or manage your reservations.</p>
+        </div>
+
+        <div style="border-top: 1px solid #eee; margin: 25px 0;"></div>
+
+        <h3 style="color: #007bff; margin-bottom: 15px;">Notifications</h3>
+        <div style="background: #f9f9f9; border-radius: 8px; padding: 15px;">
+            {% if notifications %}
+                <ul style="list-style-type: none; padding: 0;">
+                    {% for note in notifications %}
+                        <li style="background: #fff; margin-bottom: 10px; padding: 12px 15px; border-radius: 8px; border: 1px solid #ddd; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+                            {{ note.message }} <br>
+                            <small style="color: #888;">{{ note.created_at|date:"M d, Y H:i" }}</small>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <p style="color: #777;">No new notifications </p>
+            {% endif %}
+        </div>
+
+    {% else %}
+        <div style="text-align: center;">
+            <p style="color: #555;">Please <a href="{% url 'login' %}" style="color:#007bff; text-decoration:none;">Login</a> or
+            <a href="{% url 'register' %}" style="color:#007bff; text-decoration:none;">Register</a> to continue.</p>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
+

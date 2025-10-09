@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>My Reservations</h2>
+
+  {% if reservations %}
+      <ul>
+          {% for reservation in reservations %}
+              <li>
+                  <strong>{{ reservation.room.name }}</strong><br>
+                  Date: {{ reservation.date }}<br>
+                  Time: {{ reservation.start_time }} - {{ reservation.end_time }}<br>
+              <form action="{% url 'edit_reservation' reservation.id %}" method="get">
+                  <button type="submit">Edit</button>
+              </form>
+
+              <form action="{% url 'cancel_reservation' reservation.id %}" method="post">
+                  {% csrf_token %}
+                    <button type="submit">Cancel</button>
+              </form>
+              </li>
+              <hr>
+          {% endfor %}
+      </ul>
+  {% else %}
+      <p>You have no reservations yet.</p>
+  {% endif %}
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends "admin_base.html" %}
+{% block content %}
+<h2>Edit Room: {{ room.id }}</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" style="background:#ffc107; color:black; padding:8px 14px; border:none; border-radius:6px;">Update Room</button>
+</form>
+{% endblock %}

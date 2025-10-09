@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Available Rooms</h2>
+
+    {% if rooms %}
+        <ul>
+            {% for room in rooms %}
+                <li>
+                    <strong>{{ room.name }}</strong><br>
+                    Capacity: {{ room.capacity }}<br>
+                    {% if room.location %}Location: {{ room.location }}<br>{% endif %}
+                    {% if room.description %}Description: {{ room.description }}<br>{% endif %}
+
+                    <form action="{% url 'reserve_room' room.id %}" method="get" style="margin-top: 10px">
+                        <button type="submit">Reserve this room</button>
+                    </form>
+                </li>
+                <hr>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No rooms available at the moment.</p>
+    {% endif %}
+{% endblock %}

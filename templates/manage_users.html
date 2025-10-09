@@ -1,0 +1,33 @@
+{% extends "admin_base.html" %}
+
+{% block content %}
+<h2 style="margin-bottom: 15px;">Manage Users</h2>
+
+<a href="{% url 'add_user' %}"
+   style="display:inline-block; background:#007bff; color:white; padding:8px 14px; border-radius:6px; text-decoration:none;">
+   Add New User
+</a>
+
+{% if users %}
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; margin-top: 20px;">
+    {% for user in users %}
+    <div style="background: white; border-radius: 10px; padding: 20px; box-shadow: 0 2px 6px rgba(0,0,0,0.1);">
+        <h3 style="margin: 0; font-size: 18px;">{{ user.username }}</h3>
+        <p style="margin: 5px 0;"><strong>Email:</strong> {{ user.email|default:"—" }}</p>
+        <div style="margin-top: 10px; display: flex; gap: 10px;">
+            <a href="{% url 'edit_user' user.id %}"
+               style="flex:1; text-align:center; background:#ffc107; color:black; padding:6px; border-radius:6px; text-decoration:none;">
+               Edit
+            </a>
+            <a href="{% url 'delete_user' user.id %}"
+               style="flex:1; text-align:center; background:#dc3545; color:white; padding:6px; border-radius:6px; text-decoration:none;">
+               Delete
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% else %}
+<p style="margin-top: 20px;">No users found.</p>
+{% endif %}
+{% endblock %}

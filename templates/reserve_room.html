@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Reserve {{room.name}}</h2>
+
+    <form method="post">
+        {%csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Confirm</button>
+    </form>
+
+    <p><a href="{% url 'available_rooms' %}">Back to available rooms</a></p>
+{% endblock %}

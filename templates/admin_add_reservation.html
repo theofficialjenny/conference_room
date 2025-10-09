@@ -1,0 +1,15 @@
+{% extends "admin_base.html" %}
+
+{% block content %}
+    <h2>Add Reservation</h2>
+
+    <form method="post" style="background:white; padding:20px; border-radius:8px; width:400px;">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit"
+            style="background:#007bff; color:white; padding:8px 14px; border:none; border-radius:6px; cursor:pointer;">
+            Save
+        </button>
+        <a href="{% url 'manage_reservations' %}" style="margin-left:10px">Cancel</a>
+    </form>
+{% endblock %}

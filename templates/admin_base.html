@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin - Conference Room Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #eef1f7;
+            margin: 0px;
+            padding: 0px;
+        }
+        header{
+            background: #1a252f;
+            padding: 0px;
+            color: white;
+        }
+        header h1{
+            margin: 0px;
+        }
+          nav {
+            background: #2c3e50;
+            padding: 10px;
+        }
+        nav a, .nav-btn {
+            color: white;
+            margin-right: 15px;
+            text-decoration: none;
+            font-size: 15px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+        nav a:hover, .nav-btn:hover {
+            text-decoration: underline;
+        }
+        main {
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Admin Dashboard</h1>
+    </header>
+    <nav>
+        <a href="{% url 'admin_dashboard' %}">Dashboard</a>
+        <a href="{% url 'manage_users' %}">Manage Users</a>
+        <a href="{% url 'manage_rooms' %}">Manage Conference Rooms</a>
+        <a href="{% url 'manage_reservations' %}">Manage Reservations</a>
+        <form action="{% url 'logout' %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="nav-btn">Logout</button>
+        </form>
+        <a href="/">Return to site </a>
+    </nav>
+
+    <main>
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </main>
+
+</body>
+</html>
