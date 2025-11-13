@@ -63,6 +63,7 @@ MIDDLEWARE = [
 ROOT_URLCONF = 'conference_reservation.urls'
 CORS_ALLOW_ALL_ORIGINS = True
 CORS_ALLOWED_ORIGINS = [
+    "https://conference-front-end-alpha.vercel.app",
     "http://localhost:3000",
     "http://127.0.0.1:3000",
     "https://conference-front-end-alpha.vercel.app",
