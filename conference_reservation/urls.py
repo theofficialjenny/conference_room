@@ -19,9 +19,15 @@ from django.urls import path, include
 from django.contrib.auth import views as auth_views
 from reservations import views
 from reservations.views import home, LoginView, register, available_rooms, admin_dashboard
+from reservations.views_api import UserRegistrationView, LoginAPIView
 
 urlpatterns = [
 path('admin/', admin.site.urls),
+    path('users/', UserRegistrationView.as_view(), name='user-registration'),
+
+path('api/', include('reservations.urls_api')),
+
+    path('api/login/', LoginAPIView.as_view(), name='api-login'),
     path('', home, name='home'),
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
